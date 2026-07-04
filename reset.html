@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lola — Yeni Şifre</title>
+<style>
+  body{margin:0;font-family:'Segoe UI',system-ui,sans-serif;background:linear-gradient(160deg,#3A0817,#6B0F2B 55%,#4A0A1E);
+    min-height:100vh;display:flex;align-items:center;justify-content:center;color:#fff}
+  .box{max-width:400px;width:92%;padding:30px 22px;text-align:center}
+  h1{color:#F7C52B;font-size:26px;margin:6px 0 4px}
+  p{color:#f3d9e0;font-size:14px;line-height:1.6}
+  input{width:100%;box-sizing:border-box;background:#fff;border:none;border-radius:12px;padding:13px 14px;
+    font-size:16px;color:#2A0512;margin-top:10px}
+  .btn{width:100%;background:linear-gradient(135deg,#FFE9A8,#F7C52B);color:#2A0512;font-weight:900;border:none;
+    border-radius:12px;padding:14px;font-size:16px;cursor:pointer;margin-top:14px}
+  .btn:disabled{opacity:.5}
+  #msg{margin-top:12px;font-size:14px;font-weight:700}
+  .ok{color:#9BE89B}.err{color:#FF9B9B}
+</style>
+</head>
+<body>
+<div class="box">
+  <div style="font-size:44px">👑</div>
+  <h1>Lola</h1>
+  <p id="intro">Yeni şifreni belirle / Neues Passwort festlegen</p>
+  <input id="pw1" type="password" placeholder="Yeni şifre (en az 6 karakter)">
+  <input id="pw2" type="password" placeholder="Yeni şifre (tekrar)">
+  <button class="btn" id="go" onclick="setPw()">Şifreyi kaydet</button>
+  <div id="msg"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+const SB_URL='https://kjlhdjuzppvlseanvxgg.supabase.co';
+const SB_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqbGhkanV6cHB2bHNlYW52eGdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2NTIzNzcsImV4cCI6MjA5ODIyODM3N30.CBaIC0j3msJt2Jc4Y5tCyVvzDcSSpP83SAdcRybmBpk';
+const sb=window.supabase.createClient(SB_URL,SB_ANON);
+const msg=(t,ok)=>{const m=document.getElementById('msg');m.textContent=t;m.className=ok?'ok':'err';};
+// Supabase-Recovery-Link setzt die Session über den URL-Hash (#access_token=...&type=recovery)
+let ready=false;
+(async()=>{
+  // supabase-js v2 verarbeitet den Hash automatisch (detectSessionInUrl) – kurz warten und prüfen
+  for(let i=0;i<20;i++){ const {data}=await sb.auth.getSession(); if(data&&data.session){ready=true;break;} await new Promise(r=>setTimeout(r,250)); }
+  if(!ready){
+    msg('Bağlantı geçersiz veya süresi doldu. Uygulamadan yeni bir sıfırlama e-postası iste. / Link ungültig oder abgelaufen – fordere in der App eine neue E-Mail an.',false);
+    document.getElementById('go').disabled=true;
+  }
+})();
+async function setPw(){
+  const p1=document.getElementById('pw1').value, p2=document.getElementById('pw2').value;
+  if(p1.length<6){msg('Şifre en az 6 karakter olmalı.',false);return;}
+  if(p1!==p2){msg('Şifreler aynı değil.',false);return;}
+  const b=document.getElementById('go'); b.disabled=true;
+  const {error}=await sb.auth.updateUser({password:p1});
+  if(error){msg('Hata: '+error.message,false);b.disabled=false;return;}
+  msg('✅ Şifren değişti! Şimdi uygulamayı aç ve yeni şifrenle giriş yap. / Passwort geändert – jetzt in der App anmelden.',true);
+  document.getElementById('pw1').style.display='none';
+  document.getElementById('pw2').style.display='none';
+  b.style.display='none';
+}
+</script>
+</body>
+</html>
