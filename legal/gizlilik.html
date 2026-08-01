@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="tr"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lola — Gizlilik Politikası</title>
+<style>
+  :root{--wine:#2A0512;--wine2:#1A040E;--gold:#F7C52B;--gold2:#FFE587;--text:#FFF3DD;--muted:#C9A9B4;--line:rgba(255,255,255,.10)}
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(180deg,var(--wine),var(--wine2)) fixed;color:var(--text);
+       font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:0 0 60px}
+  header{padding:26px 20px 18px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.18)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  .marke{display:flex;align-items:center;gap:12px}
+  .marke b{font-size:26px;background:linear-gradient(135deg,var(--gold2),var(--gold));
+           -webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.5px}
+  nav{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+  nav a{color:var(--muted);text-decoration:none;font-size:13.5px;padding:6px 12px;
+        border:1px solid var(--line);border-radius:999px;white-space:nowrap}
+  nav a.on{color:#3A0512;background:linear-gradient(135deg,var(--gold2),var(--gold));border-color:transparent;font-weight:700}
+  main{padding-top:26px}
+  h1{font-size:25px;margin:.2em 0 .6em;color:var(--gold2)}
+  h2{font-size:19px;margin:1.7em 0 .5em;color:var(--gold2);border-bottom:1px solid var(--line);padding-bottom:6px}
+  h3{font-size:16px;margin:1.3em 0 .4em;color:var(--gold)}
+  h4{font-size:15px;margin:1.1em 0 .3em;color:var(--gold)}
+  p{margin:.65em 0}
+  ul,ol{margin:.5em 0 .9em;padding-left:1.35em}
+  li{margin:.28em 0}
+  a{color:var(--gold)}
+  strong{color:#fff}
+  code{background:rgba(255,255,255,.07);padding:1px 6px;border-radius:5px;font-size:.9em}
+  hr{border:0;border-top:1px solid var(--line);margin:1.8em 0}
+  footer{max-width:760px;margin:40px auto 0;padding:18px 20px 0;border-top:1px solid var(--line);
+         color:var(--muted);font-size:13px}
+  @media(max-width:520px){body{font-size:15.5px}h1{font-size:22px}}
+</style></head><body>
+<header><div class="wrap">
+  <div class="marke"><b>Lola</b></div>
+  <nav><a href="gizlilik.html" class="on">Gizlilik Politikası</a><a href="kullanim.html">Kullanım Şartları</a><a href="topluluk.html">Topluluk Kuralları</a><a href="datenschutz.html">Datenschutzerklärung</a><a href="agb.html">Nutzungsbedingungen</a></nav>
+</div></header>
+<main class="wrap"><h1>Lola – Gizlilik Politikası</h1>
+<p>Son güncelleme: 01.08.2026</p>
+<p>Veri sorumlusu: <strong>Yusuf Fuat Saraç</strong> (Almanya)</p>
+<p>İletişim: <strong><a href="mailto:info@sarac.ai.de">info@sarac.ai.de</a></strong></p>
+<p>İletişim ve tüm gizlilik talepleri: <strong><a href="mailto:info@sarac.ai.de">info@sarac.ai.de</a></strong></p>
+<p>Lola Almanya'da yerleşik bir işletme tarafından işletilir, kullanıcılarının</p>
+<p>büyük bölümü Türkiye'dedir. Bu yüzden hem Avrupa veri koruma hukuku (GDPR) hem</p>
+<p>de Türk Kişisel Verilerin Korunması Kanunu (KVKK) uygulanır. Aşağıda hangi</p>
+<p>verini neden işlediğimizi, kimlerle paylaştığımızı ve haklarını sade bir dille</p>
+<p>anlatıyoruz.</p>
+<h2>1. En kısa özet</h2>
+<ul>
+<li>Kayıt için <strong>sadece e-posta adresi ve şifre</strong> gerekir. Telefon numaranı</li>
+</ul>
+<p>  istemiyoruz.</p>
+<ul>
+<li>Odalardaki <strong>canlı konuşma kaydedilmez</strong>. Ancak özel mesajda gönderdiğin</li>
+</ul>
+<p>  <strong>sesli mesaj bir dosya olarak saklanır</strong>.</p>
+<ul>
+<li>Reklam ağı, izleme (tracking) veya analiz aracı kullanmıyoruz. Verini</li>
+</ul>
+<p>  satmıyoruz.</p>
+<ul>
+<li>Ödeme bilgilerin bize hiç ulaşmaz; ödemeyi Apple ve Google yapar.</li>
+<li>Hesabını sildirmek istersen <a href="mailto:info@sarac.ai.de">info@sarac.ai.de</a> adresine yazman yeterli.</li>
+</ul>
+<h2>2. Nasıl kayıt olunur ve hangi hesap verileri işlenir</h2>
+<p>Kayıt ve giriş <strong>e-posta adresi ve şifre</strong> ile yapılır. Şifreni biz göremeyiz;</p>
+<p>şifre, kimlik doğrulama sağlayıcımız Supabase tarafından şifrelenmiş özet</p>
+<p>(hash) olarak saklanır. Şifreni unutursan e-posta adresine sıfırlama bağlantısı</p>
+<p>göndeririz.</p>
+<p>Hesapla birlikte işlenenler:</p>
+<ul>
+<li>E-posta adresi ve hesap oluşturma/giriş zamanları</li>
+<li>Uygulama içi kullanıcı numaran (kısa ID) ve dahili hesap kimliğin</li>
+<li>Doğum yılın — <strong>yalnızca 18 yaş sınırını uygulamak</strong> ve profildeki yaş</li>
+</ul>
+<p>  rozetini göstermek için (aşağıda 9. bölüm)</p>
+<ul>
+<li>Kullanıcı adı, profil fotoğrafı veya hareketli profil görseli, profil yazısı</li>
+</ul>
+<p>  (bio), cinsiyet, ülke ve uygulama dili</p>
+<p>Uygulamada Google veya Apple ile giriş <strong>açık değildir</strong>; ilerde açılırsa bu</p>
+<p>metin güncellenir. Telefon numarası hiçbir yerde istenmez, SMS gönderilmez.</p>
+<h2>3. Kullanım sırasında oluşan veriler</h2>
+<ul>
+<li>Girdiğin, üyesi olduğun ve takip ettiğin odalar; oda içindeki koltuk durumun</li>
+</ul>
+<p>  ve rolün (üye, admin, süper admin)</p>
+<ul>
+<li><strong>Oda ziyaret geçmişi:</strong> bir odaya girdiğinde ziyaretin kaydedilir ve o odanın</li>
+</ul>
+<p>  ziyaretçi listesinde <strong>diğer kullanıcılara</strong> en fazla 30 gün gösterilir.</p>
+<p>  Tekrar girmen süreyi yeniler. (Kral ve üstü aristokrasi seviyesindekiler bu</p>
+<p>  listede isimsiz görünür.)</p>
+<ul>
+<li>Profilini kimin ziyaret ettiği ve senin kimin profilini ziyaret ettiğin</li>
+<li>Gönderdiğin ve aldığın hediyeler, coin ve elmas bakiyen, işlem geçmişin</li>
+<li>Oyun sonuçların, bahis tutarların ve oyun sıralamaların</li>
+<li>Seviye, rozet, aristokrasi, VIP/SVIP ve klan bilgilerin</li>
+<li>Takipleşmeler, arkadaşlıklar, engellediğin kişiler</li>
+<li>Yaptığın şikâyetler, aldığın cezalar ve açtığın temyiz başvuruları</li>
+</ul>
+<h2>4. Yazdıkların, gönderdiklerin ve ses</h2>
+<p><strong>Oda sohbeti:</strong> Odalarda yazdığın mesajlar sunucumuzda saklanır ve **7 gün</p>
+<p>sonra otomatik olarak silinir**.</p>
+<p><strong>Özel mesajlar (DM):</strong> Yazışmaların, gönderdiğin fotoğraflar, videolar ve</p>
+<p>sesli mesajlar sunucumuzda saklanır. "Tek seferlik" gönderilen fotoğraf</p>
+<p>alıcıda yalnızca bir kez açılır.</p>
+<p><strong>Canlı ses (odalar):</strong> Odalardaki konuşma Agora altyapısı üzerinden gerçek</p>
+<p>zamanlı iletilir. <strong>Bu konuşmayı kaydetmiyoruz</strong> — ne biz ne de uygulama bir</p>
+<p>kopyasını saklar. Mikrofon izni yalnızca bir koltuğa oturduğunda kullanılır;</p>
+<p>sadece dinlerken mikrofonun kapalıdır.</p>
+<p><strong>Sesli mesaj (DM):</strong> Özel mesajda mikrofona basıp kaydettiğin sesli mesaj bir</p>
+<p>ses dosyası olarak yüklenir ve saklanır. Bu, canlı odadan farklıdır.</p>
+<p><strong>Kamera:</strong> Görüntülü odalarda kamera görüntün de gerçek zamanlı iletilir ve</p>
+<p>kaydedilmez. Kamera yalnızca sen açtığında çalışır.</p>
+<p><strong>Önemli — yüklenen dosyalar herkese açık bağlantıya sahiptir:</strong> Profil</p>
+<p>fotoğrafı, oda kapağı, sohbet görselleri, DM fotoğrafları/videoları ve sesli</p>
+<p>mesajlar, bağlantısını bilen herkesin açabileceği bir depolama alanında tutulur.</p>
+<p>Bağlantı tahmin edilmesi zor olsa da, gizli kalmasını istediğin içerikleri</p>
+<p>yüklememeni öneririz.</p>
+<h2>5. Teknik veriler</h2>
+<ul>
+<li>Cihaz türü, işletim sistemi ve sürümü, uygulama sürümü</li>
+<li>IP adresi, bağlantı zaman damgaları, hata ve güvenlik kayıtları</li>
+<li>Bildirim izni verdiysen: cihazının bildirim jetonu (push token) ve hangi</li>
+</ul>
+<p>  bildirim türlerini açtığın</p>
+<p>Uygulamada reklam kimliği okuyan, davranışını izleyen veya profil çıkaran</p>
+<p>herhangi bir üçüncü taraf aracı <strong>yoktur</strong>.</p>
+<h2>6. Neden işliyoruz ve hukuki sebep nedir</h2>
+<ul>
+<li><strong>Hesabını açmak ve hizmeti sunmak</strong> (odalar, sohbet, hediyeler, oyunlar,</li>
+</ul>
+<p>  klanlar) — sözleşmenin kurulması ve ifası</p>
+<p>  (GDPR m.6/1-b · KVKK m.5/2-c)</p>
+<ul>
+<li>**Güvenlik, dolandırıcılık ve kötüye kullanımın önlenmesi, moderasyon, 18 yaş</li>
+</ul>
+<p>  sınırının uygulanması** — meşru menfaat</p>
+<p>  (GDPR m.6/1-f · KVKK m.5/2-f)</p>
+<ul>
+<li><strong>Satın almaların doğrulanması, faturalandırma ve muhasebe</strong> — sözleşmenin</li>
+</ul>
+<p>  ifası ve yasal yükümlülük (GDPR m.6/1-b ve c · KVKK m.5/2-a ve ç)</p>
+<ul>
+<li><strong>Yetkili makam taleplerine yanıt vermek</strong> — yasal yükümlülük</li>
+</ul>
+<p>  (GDPR m.6/1-c · KVKK m.5/2-a)</p>
+<ul>
+<li><strong>Bildirim göndermek</strong> — açık rızan (GDPR m.6/1-a · KVKK m.5/1). İzni</li>
+</ul>
+<p>  istediğin an cihaz ayarlarından veya uygulamadaki Bildirimler sayfasından</p>
+<p>  geri alabilirsin.</p>
+<p>Verilerin üzerinde <strong>otomatik karar alma veya profilleme yapılmaz</strong>. Kişisel</p>
+<p>verilerin <strong>satılmaz</strong> ve pazarlama amacıyla üçüncü kişilere verilmez.</p>
+<h2>7. Uygulama içinde başkaları neyi görür</h2>
+<p>Lola sosyal bir uygulamadır; aşağıdakiler diğer kullanıcılara açıktır:</p>
+<ul>
+<li>Profil bilgilerin: ad, fotoğraf, bio, seviye, rozetler, aristokrasi, VIP,</li>
+</ul>
+<p>  klan, ülke, cinsiyet ve yaş rozetin</p>
+<ul>
+<li>Bir odada bulunman, koltuk durumun ve oda içindeki rolün</li>
+<li>Oda ziyaretçi listeleri (30 gün), sıralama listeleri ve oda kupaları</li>
+<li>Gönderdiğin hediyeler — oda içinde, büyük hediyelerde uygulama genelindeki</li>
+</ul>
+<p>  duyuru şeridinde</p>
+<ul>
+<li>Çevrimiçi durumun. Ayarlar'daki <strong>"Gizli mod"</strong> şalterini açarsan aktifliğin</li>
+</ul>
+<p>  kimseye gösterilmez.</p>
+<h2>8. Kimlerle paylaşıyoruz</h2>
+<p>Hizmeti sunabilmek için şu sağlayıcıları kullanıyoruz. Hepsi bizim adımıza ve</p>
+<p>talimatımızla çalışır (veri işleyen):</p>
+<ul>
+<li><strong>Supabase</strong> — veritabanı, hesap/kimlik doğrulama ve dosya depolama</li>
+<li><strong>Agora</strong> — odalardaki canlı ses ve görüntünün gerçek zamanlı iletimi</li>
+<li><strong>Google Firebase Cloud Messaging</strong> (Android) ve **Apple Push Notification</li>
+</ul>
+<p>  service** (iPhone) — bildirimlerin cihazına ulaştırılması</p>
+<ul>
+<li><strong>Apple App Store</strong> ve <strong>Google Play</strong> — satın alma işlemi ve satın alma</li>
+</ul>
+<p>  belgesinin doğrulanması</p>
+<p>Bu sağlayıcılarla veri işleme sözleşmeleri (GDPR m.28) yapılır. Veriler</p>
+<p>Avrupa Birliği dışına (örneğin ABD'ye) aktarıldığında AB Komisyonu'nun standart</p>
+<p>sözleşme maddeleri (GDPR m.46) gibi uygun güvenceler uygulanır. KVKK açısından</p>
+<p>yurt dışına aktarım, kanunun aradığı şartlar çerçevesinde ve hizmetin</p>
+<p>sunulabilmesi için gereklidir.</p>
+<p>Bunların dışında verilerin üçüncü kişilerle paylaşılmaz. Yasal zorunluluk</p>
+<p>halleri (mahkeme, savcılık veya yetkili makam talebi) saklıdır.</p>
+<h2>9. Ne kadar süre saklıyoruz</h2>
+<ul>
+<li><strong>Hesap ve profil verileri:</strong> hesabın açık kaldığı sürece</li>
+<li><strong>Oda sohbet mesajları:</strong> 7 gün, sonra otomatik silinir</li>
+<li><strong>Oda ziyaret kayıtları:</strong> son ziyaretten itibaren en çok 60 gün</li>
+</ul>
+<p>  (diğer kullanıcılara görünürlüğü 30 gün)</p>
+<ul>
+<li><strong>Özel mesajlar ve gönderdiğin medya:</strong> sen veya karşı taraf silene ya da</li>
+</ul>
+<p>  hesap kapanana kadar</p>
+<ul>
+<li><strong>Satın alma ve işlem kayıtları:</strong> ticaret ve vergi mevzuatının zorunlu</li>
+</ul>
+<p>  kıldığı saklama süreleri boyunca (Almanya'da kural olarak 10 yıla kadar).</p>
+<p>  Hesabın silinse bile bu kayıtlar yasal süre dolana dek tutulur.</p>
+<ul>
+<li><strong>Güvenlik ve hata kayıtları:</strong> kısa ve sınırlı süre</li>
+<li><strong>Ceza/yasaklama kayıtları:</strong> yaptırımın süresi ve itiraz süreci boyunca;</li>
+</ul>
+<p>  tekrar eden ihlallerin tespiti için makul bir süre daha</p>
+<h2>10. Hesabını silmek</h2>
+<p>Hesabını ve kişisel verilerini silmek için <strong><a href="mailto:info@sarac.ai.de">info@sarac.ai.de</a></strong> adresine, hesabına</p>
+<p>kayıtlı e-postadan bir ileti gönder. Talebini en geç <strong>30 gün</strong> içinde yerine</p>
+<p>getirir ve sonucu sana bildiririz.</p>
+<p>Silme işleminde hesabın, profilin, mesajların ve yüklediğin dosyalar silinir</p>
+<p>veya bir daha seninle ilişkilendirilemeyecek şekilde anonimleştirilir. Yasal</p>
+<p>saklama zorunluluğu bulunan kayıtlar (özellikle satın alma ve muhasebe</p>
+<p>kayıtları) süresi dolana kadar saklanmaya devam eder; bu kayıtlar başka hiçbir</p>
+<p>amaçla kullanılmaz.</p>
+<p><strong>Silinen hesabın bakiyesi geri gelmez:</strong> kalan coin, elmas, aristokrasi ve</p>
+<p>VIP hakları kaybolur ve bedeli iade edilmez.</p>
+<p>Uygulamadaki <strong>"Verileri sıfırla"</strong> düğmesi hesabını silmez — yalnızca</p>
+<p>cihazındaki yerel kayıtları temizler.</p>
+<h2>11. Haklarınız</h2>
+<p>KVKK m.11 ve GDPR m.15–22 uyarınca şu haklara sahipsin:</p>
+<ul>
+<li>Verilerinin işlenip işlenmediğini öğrenme ve <strong>bunlara erişme</strong></li>
+<li>Yanlış veya eksik verilerin <strong>düzeltilmesini</strong> isteme</li>
+<li>Verilerinin <strong>silinmesini</strong> veya yok edilmesini isteme</li>
+<li>İşlemenin <strong>kısıtlanmasını</strong> isteme</li>
+<li>Verilerini yapılandırılmış bir biçimde alma (<strong>taşınabilirlik</strong>)</li>
+<li>İşlemeye <strong>itiraz</strong> etme</li>
+<li>Verdiğin <strong>rızayı geri alma</strong> (geri alma, o ana kadarki işlemeyi etkilemez)</li>
+<li>İşlenen veriler nedeniyle zarara uğradıysan <strong>zararının giderilmesini</strong> talep</li>
+</ul>
+<p>  etme</p>
+<p>Başvurunu <strong><a href="mailto:info@sarac.ai.de">info@sarac.ai.de</a></strong> adresine gönder. Kimliğinden emin olabilmek için</p>
+<p>hesabına kayıtlı e-posta adresini kullan. Başvuruları KVKK'ya göre en geç 30 gün,</p>
+<p>GDPR'a göre en geç 1 ay içinde yanıtlarız.</p>
+<p>Yanıtımızı yetersiz bulursan <strong>Kişisel Verileri Koruma Kurulu'na</strong> (Türkiye)</p>
+<p>veya yerleşik olduğun ülkedeki veri koruma denetim makamına şikâyette bulunma</p>
+<p>hakkın vardır.</p>
+<h2>12. Güvenlik</h2>
+<p>Veriler cihazınla sunucu arasında şifreli olarak (TLS) iletilir. Sunucu</p>
+<p>tarafında satır bazlı güvenlik kuralları uygulanır: her hesap yalnızca görmeye</p>
+<p>yetkili olduğu kayda erişebilir. Bakiye, ceza ve satın alma gibi kritik</p>
+<p>işlemler yalnızca sunucuda yürütülür. Verilere erişim, görevi gereği ihtiyacı</p>
+<p>olan kişilerle sınırlıdır.</p>
+<p>Şifreni kimseyle paylaşma. Hesabının başkasının eline geçtiğini düşünüyorsan</p>
+<p>uygulamadan şifreni değiştir ve <a href="mailto:info@sarac.ai.de">info@sarac.ai.de</a> adresine haber ver.</p>
+<h2>13. Cihaz izinleri</h2>
+<p>Uygulama şu izinleri ister; hepsini işletim sisteminin ayarlarından geri</p>
+<p>alabilirsin:</p>
+<ul>
+<li><strong>Mikrofon</strong> — odada koltuğa oturup konuşmak ve sesli mesaj kaydetmek için</li>
+<li><strong>Kamera</strong> — profil fotoğrafı çekmek ve görüntülü odalarda yayın yapmak için</li>
+<li><strong>Fotoğraflar/galeri</strong> — profil fotoğrafı, oda kapağı ve sohbette görsel</li>
+</ul>
+<p>  göndermek için</p>
+<ul>
+<li><strong>Bildirimler</strong> — mesaj, hediye ve istek bildirimleri için</li>
+<li><strong>Arka planda ses</strong> — uygulamayı küçülttüğünde oda sesinin kesilmemesi için</li>
+</ul>
+<p>  (Android'de kalıcı bir bildirimle gösterilir)</p>
+<p>Bir izni vermezsen yalnızca o özellik çalışmaz; uygulamanın geri kalanını</p>
+<p>kullanmaya devam edebilirsin.</p>
+<h2>14. 18 yaş sınırı</h2>
+<p>Lola <strong>yalnızca 18 yaş ve üzeri</strong> içindir. Kayıt sırasında doğum yılın sorulur</p>
+<p>ve 18 yaşından küçük olduğunu belirtenlerin girişi engellenir. 18 yaşından</p>
+<p>küçük bir kullanıcı tespit edilirse hesap kapatılır ve verileri silinir.</p>
+<p>Böyle bir durumu <a href="mailto:info@sarac.ai.de">info@sarac.ai.de</a> adresine bildirebilirsin.</p>
+<h2>15. Değişiklikler</h2>
+<p>Bu politikayı güncelleyebiliriz. Önemli değişiklikleri uygulama içinde</p>
+<p>duyururuz; güncel sürüm her zaman uygulamada Ayarlar → Yasal bölümünde yer alır.</p>
+<h2>16. İletişim</h2>
+<p>Gizlilikle ilgili her konuda: <strong><a href="mailto:info@sarac.ai.de">info@sarac.ai.de</a></strong></p>
+<p>İletişim: Yusuf Fuat Saraç, Almanya — <strong><a href="mailto:info@sarac.ai.de">info@sarac.ai.de</a></strong></p></main>
+<footer class="wrap-f"><div class="wrap" style="padding:0">
+  Lola · Yusuf Fuat Saraç · <a href="mailto:info@sarac.ai.de">info@sarac.ai.de</a>
+</div></footer>
+</body></html>
