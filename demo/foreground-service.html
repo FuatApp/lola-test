@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lola — Foreground Service Demo (com.lolalive.app)</title>
+<style>
+ body{margin:0;background:#1a0509;color:#fff;font:16px/1.55 "Segoe UI",Roboto,Arial,sans-serif;}
+ .wrap{max-width:900px;margin:0 auto;padding:32px 20px 60px;}
+ h1{color:#ffd166;font-size:28px;margin:0 0 6px;} h2{color:#ffd166;font-size:20px;margin:28px 0 8px;}
+ video{width:100%;max-width:380px;display:block;margin:22px auto;border-radius:18px;border:2px solid #7a2036;}
+ code{background:#12060a;border:1px solid #7a2036;border-radius:10px;padding:2px 7px;color:#ffe3a3;font-size:14px;}
+ pre{background:#12060a;border:1px solid #7a2036;border-radius:12px;padding:16px;overflow:auto;color:#ffe3a3;font-size:14px;}
+ .en{color:#e9c7cf;font-style:italic;} ul{padding-left:20px;} li{margin:6px 0;}
+</style></head><body><div class="wrap">
+<h1>Lola — Dienste im Vordergrund / Foreground services</h1>
+<p>Paket / package: <code>com.lolalive.app</code></p>
+<video controls playsinline preload="metadata" src="lola_foreground_service.mp4"></video>
+<h2>Ne yapıyor? / What it does</h2>
+<ul>
+<li><code>FOREGROUND_SERVICE_MICROPHONE</code> — kullanıcı sesli odada konuşurken uygulamadan çıksa bile mikrofon açık kalır.
+<span class="en">Keeps the user's microphone live in a group voice room while the app is in the background.</span></li>
+<li><code>FOREGROUND_SERVICE_MEDIA_PLAYBACK</code> — odadaki diğer katılımcıların sesi ve oda müziği çalmaya devam eder.
+<span class="en">Keeps other participants' audio and the room music playing.</span></li>
+</ul>
+<h2>Kullanıcıya görünen bildirim / User-visible notification</h2>
+<p>Kanal / channel: <code>Canlı Oda</code> · Başlık: <code>Lola</code> · Metin: <code>Oda devam ediyor 🎙️</code> — kalıcı (ongoing), dokununca odaya döner.</p>
+<h2>Kod / code (KeepAliveService.java)</h2>
+<pre>startForeground(NOTIF_ID, n,
+    ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+  | ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);</pre>
+<pre>&lt;service android:name=".KeepAliveService"
+    android:foregroundServiceType="microphone|mediaPlayback" /&gt;</pre>
+<p>Servis yalnızca <code>Voice.join()</code> ile başlar ve <code>Voice.leave()</code> ile durur.
+<span class="en">The service starts only when a user joins a voice room and stops when they leave.</span></p>
+<h2>Video hakkında / about this video</h2>
+<p class="en">Screen recording of the running app plus explanatory cards with the actual service source code. The notification shown on the card is labelled as a preview; its text is taken verbatim from KeepAliveService.java.</p>
+</div></body></html>
