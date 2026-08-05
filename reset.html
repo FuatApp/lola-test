@@ -3,59 +3,174 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Lola — Yeni Şifre</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>👑</text></svg>">
 <style>
+  *{box-sizing:border-box}
   body{margin:0;font-family:'Segoe UI',system-ui,sans-serif;background:linear-gradient(160deg,#3A0817,#6B0F2B 55%,#4A0A1E);
-    min-height:100vh;display:flex;align-items:center;justify-content:center;color:#fff}
-  .box{max-width:400px;width:92%;padding:30px 22px;text-align:center}
-  h1{color:#F7C52B;font-size:26px;margin:6px 0 4px}
-  p{color:#f3d9e0;font-size:14px;line-height:1.6}
-  input{width:100%;box-sizing:border-box;background:#fff;border:none;border-radius:12px;padding:13px 14px;
-    font-size:16px;color:#2A0512;margin-top:10px}
+    min-height:100vh;display:flex;align-items:center;justify-content:center;color:#fff;padding:24px 0}
+  .box{max-width:400px;width:92%;text-align:center}
+  h1{color:#F7C52B;font-size:28px;margin:6px 0 2px;letter-spacing:1px}
+  .sub{color:#f3d9e0;font-size:14px;line-height:1.6;margin:0 0 18px}
+  .who{color:#F7C52B;font-weight:800;font-size:14px;margin:-8px 0 14px;word-break:break-all}
+  .field{position:relative;margin-top:10px}
+  input{width:100%;background:#fff;border:2px solid transparent;border-radius:12px;padding:14px 46px 14px 14px;
+    font-size:16px;color:#2A0512;outline:none}
+  input:focus{border-color:#F7C52B}
+  .eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:19px;
+    cursor:pointer;padding:6px;line-height:1;opacity:.65}
   .btn{width:100%;background:linear-gradient(135deg,#FFE9A8,#F7C52B);color:#2A0512;font-weight:900;border:none;
-    border-radius:12px;padding:14px;font-size:16px;cursor:pointer;margin-top:14px}
-  .btn:disabled{opacity:.5}
-  #msg{margin-top:12px;font-size:14px;font-weight:700}
-  .ok{color:#9BE89B}.err{color:#FF9B9B}
+    border-radius:12px;padding:15px;font-size:16px;cursor:pointer;margin-top:16px;transition:.15s;
+    display:block;text-decoration:none}
+  .btn:active{transform:scale(.98)}
+  .btn[disabled]{opacity:.45;cursor:default}
+  .btn.ghost{background:transparent;color:#F7C52B;border:2px solid rgba(247,197,43,.55);font-weight:700}
+  .hint{font-size:12.5px;color:#e7bfcc;margin-top:8px;min-height:16px;text-align:left}
+  #msg{margin-top:14px;font-size:14px;font-weight:700;line-height:1.55}
+  .ok{color:#9BE89B}.err{color:#FF9B9B}.info{color:#f3d9e0;font-weight:600}
+  .bar{height:6px;border-radius:6px;background:rgba(255,255,255,.18);margin-top:10px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:#FF9B9B;transition:.25s}
+  .foot{margin-top:22px;font-size:12px;color:#c99aab}
+  .spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#F7C52B;
+    border-radius:50%;animation:s .8s linear infinite;vertical-align:-3px;margin-right:6px}
+  @keyframes s{to{transform:rotate(360deg)}}
+  .hidden{display:none}
 </style>
 </head>
 <body>
 <div class="box">
-  <div style="font-size:44px">👑</div>
+  <div style="font-size:46px">👑</div>
   <h1>Lola</h1>
-  <p id="intro">Yeni şifreni belirle / Neues Passwort festlegen</p>
-  <input id="pw1" type="password" placeholder="Yeni şifre (en az 6 karakter)">
-  <input id="pw2" type="password" placeholder="Yeni şifre (tekrar)">
-  <button class="btn" id="go" onclick="setPw()">Şifreyi kaydet</button>
+  <p class="sub" id="intro"><span class="spin"></span>Bağlantı kontrol ediliyor… / Link wird geprüft…</p>
+  <div class="who hidden" id="who"></div>
+
+  <!-- Formular: neues Passwort -->
+  <div id="form" class="hidden">
+    <div class="field">
+      <input id="pw1" type="password" autocomplete="new-password" placeholder="Yeni şifre (en az 6 karakter)">
+      <button class="eye" type="button" onclick="toggle('pw1',this)">👁️</button>
+    </div>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="field">
+      <input id="pw2" type="password" autocomplete="new-password" placeholder="Yeni şifre (tekrar)">
+      <button class="eye" type="button" onclick="toggle('pw2',this)">👁️</button>
+    </div>
+    <div class="hint" id="hint"></div>
+    <button class="btn" id="go">Şifreyi kaydet</button>
+  </div>
+
+  <!-- Notausgang: neue Mail direkt hier anfordern -->
+  <div id="again" class="hidden">
+    <div class="field">
+      <input id="mail" type="email" autocomplete="email" placeholder="E-posta adresin / Deine E-Mail">
+    </div>
+    <button class="btn" id="send">Yeni bağlantı gönder</button>
+  </div>
+
   <div id="msg"></div>
+  <a class="btn ghost hidden" id="open" href="lola://auth-callback">Uygulamayı aç</a>
+  <div class="foot">Lola · destek: info@saracai.de</div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 const SB_URL='https://kjlhdjuzppvlseanvxgg.supabase.co';
-const SB_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqbGhkanV6cHB2bHNlYW52eGdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2NTIzNzcsImV4cCI6MjA5ODIyODM3N30.CBaIC0j3msJt2Jc4Y5tCyVvzDcSSpP83SAdcRybmBpk';
-const sb=window.supabase.createClient(SB_URL,SB_ANON);
-const msg=(t,ok)=>{const m=document.getElementById('msg');m.textContent=t;m.className=ok?'ok':'err';};
-// Supabase-Recovery-Link setzt die Session über den URL-Hash (#access_token=...&type=recovery)
-let ready=false;
+const SB_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqbGhkanV6cHB2bHNlYW52eGdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2NTIzNzcsImV4cCI6MjA5ODIyODM3N30.TuMTiKHv3Wkl7PmUti-B_pNY7Y0QXEkoEBf4hTAgVCE';
+// Eigene Seite = eigener Client. WICHTIG: implicit (nicht pkce) – der PKCE-Verifier liegt in der APP,
+// diese Seite laeuft im Browser und koennte ein "?code=" nie einloesen (genau das war der graue Knopf).
+const sb=window.supabase.createClient(SB_URL,SB_ANON,{auth:{flowType:'implicit',persistSession:false,detectSessionInUrl:false}});
+
+const $=id=>document.getElementById(id);
+const show=(id,on)=>$(id).classList[on?'remove':'add']('hidden');
+const msg=(t,cls)=>{$('msg').innerHTML=t;$('msg').className=cls||'info';};
+
+function toggle(id,btn){const el=$(id);const p=el.type==='password';el.type=p?'text':'password';btn.textContent=p?'🙈':'👁️';}
+
+/* ---------- 1. Bağlantıyı çöz / Link aufloesen ---------- */
 (async()=>{
-  // supabase-js v2 verarbeitet den Hash automatisch (detectSessionInUrl) – kurz warten und prüfen
-  for(let i=0;i<20;i++){ const {data}=await sb.auth.getSession(); if(data&&data.session){ready=true;break;} await new Promise(r=>setTimeout(r,250)); }
-  if(!ready){
-    msg('Bağlantı geçersiz veya süresi doldu. Uygulamadan yeni bir sıfırlama e-postası iste. / Link ungültig oder abgelaufen – fordere in der App eine neue E-Mail an.',false);
-    document.getElementById('go').disabled=true;
+  const q=new URLSearchParams(location.search);
+  const h=new URLSearchParams(location.hash.replace(/^#/,''));
+  let session=null, fehler='';
+
+  // a) Geraeteunabhaengiger Weg: ?token_hash=...&type=recovery  -> verifyOtp (braucht keinen Verifier)
+  const th=q.get('token_hash')||h.get('token_hash');
+  if(th){
+    const {data,error}=await sb.auth.verifyOtp({token_hash:th,type:q.get('type')||h.get('type')||'recovery'});
+    if(error) fehler=error.message; else session=data.session;
+  }
+  // b) Klassischer Weg: #access_token=...&refresh_token=...
+  if(!session && h.get('access_token')){
+    const {data,error}=await sb.auth.setSession({access_token:h.get('access_token'),refresh_token:h.get('refresh_token')||''});
+    if(error) fehler=error.message; else session=data.session;
+  }
+  // c) PKCE-Rest (?code=) – ohne Verifier prinzipiell nicht einloesbar
+  if(!session && q.get('code')) fehler='pkce';
+  // d) Fehler direkt aus dem Link (abgelaufen oder schon benutzt)
+  const linkErr=q.get('error_description')||h.get('error_description')||q.get('error')||h.get('error');
+  if(!session && linkErr) fehler=linkErr;
+
+  history.replaceState(null,'',location.pathname);   // Token aus der Adresszeile nehmen
+
+  if(session){
+    $('intro').textContent='Yeni şifreni belirle / Neues Passwort festlegen';
+    if(session.user&&session.user.email){$('who').textContent=session.user.email;show('who',true);}
+    show('form',true); $('pw1').focus();
+  }else{
+    $('intro').textContent='Bu bağlantı artık geçerli değil. / Dieser Link gilt nicht mehr.';
+    msg(fehler==='pkce'
+      ? 'Bağlantı 1 saat geçerlidir ve tek kullanımlıktır. Aşağıdan yeni bir bağlantı iste — 1 dakika sürer.<br><span style="opacity:.75">Der Link gilt 1 Stunde und nur einmal. Fordere unten einfach einen neuen an.</span>'
+      : 'Bağlantının süresi dolmuş veya daha önce kullanılmış. Aşağıdan yenisini iste.<br><span style="opacity:.75">Link abgelaufen oder schon benutzt — hier neu anfordern.</span>','err');
+    show('again',true);
   }
 })();
-async function setPw(){
-  const p1=document.getElementById('pw1').value, p2=document.getElementById('pw2').value;
-  if(p1.length<6){msg('Şifre en az 6 karakter olmalı.',false);return;}
-  if(p1!==p2){msg('Şifreler aynı değil.',false);return;}
-  const b=document.getElementById('go'); b.disabled=true;
-  const {error}=await sb.auth.updateUser({password:p1});
-  if(error){msg('Hata: '+error.message,false);b.disabled=false;return;}
-  msg('✅ Şifren değişti! Şimdi uygulamayı aç ve yeni şifrenle giriş yap. / Passwort geändert – jetzt in der App anmelden.',true);
-  document.getElementById('pw1').style.display='none';
-  document.getElementById('pw2').style.display='none';
-  b.style.display='none';
+
+/* ---------- 2. Şifreyi kaydet ---------- */
+function pruefe(){
+  const a=$('pw1').value,b=$('pw2').value;
+  const stark=Math.min(100,(a.length>=6?45:a.length*7)+(/[A-ZÇĞİÖŞÜ]/.test(a)?20:0)+(/[0-9]/.test(a)?20:0)+(/[^\w]/.test(a)?15:0));
+  $('bar').style.width=stark+'%';
+  $('bar').style.background=stark<45?'#FF9B9B':stark<80?'#F7C52B':'#9BE89B';
+  if(a && a.length<6){$('hint').textContent='En az 6 karakter / mindestens 6 Zeichen';return false;}
+  if(a && b && a!==b){$('hint').textContent='Şifreler aynı değil / Passwörter stimmen nicht überein';return false;}
+  $('hint').textContent = (a&&b) ? '✓ Tamam / passt' : '';
+  return a.length>=6 && a===b;
 }
+$('pw1').addEventListener('input',pruefe);
+$('pw2').addEventListener('input',pruefe);
+$('pw2').addEventListener('keydown',e=>{if(e.key==='Enter')$('go').click();});
+
+$('go').addEventListener('click',async()=>{
+  if(!pruefe()){                       // Knopf bleibt klickbar – er SAGT, was fehlt, statt grau zu sein
+    msg($('hint').textContent||'Her iki alanı da doldur. / Bitte beide Felder ausfüllen.','err');
+    return;
+  }
+  $('go').disabled=true; msg('<span class="spin"></span>Kaydediliyor…','info');
+  const {error}=await sb.auth.updateUser({password:$('pw1').value});
+  if(error){
+    const t=/same.*password|should be different/i.test(error.message)
+      ? 'Yeni şifre eskisiyle aynı olamaz. / Neues Passwort muss sich vom alten unterscheiden.'
+      : 'Hata: '+error.message;
+    msg(t,'err'); $('go').disabled=false; return;
+  }
+  show('form',false); show('who',false);
+  $('intro').textContent='';
+  msg('✅ Şifren değişti!<br>Şimdi uygulamayı aç ve yeni şifrenle giriş yap.<br><span style="opacity:.75">Passwort geändert – jetzt in der App anmelden.</span>','ok');
+  show('open',true);
+});
+
+/* ---------- 3. Yeni bağlantı iste / neue Mail anfordern ---------- */
+$('send').addEventListener('click',async()=>{
+  const m=$('mail').value.trim();
+  if(!/.+@.+\..+/.test(m)){msg('Geçerli bir e-posta gir. / Bitte gültige E-Mail eingeben.','err');return;}
+  $('send').disabled=true; msg('<span class="spin"></span>Gönderiliyor…','info');
+  const {error}=await sb.auth.resetPasswordForEmail(m,{redirectTo:location.origin+location.pathname});
+  if(error){
+    msg(/rate|limit|seconds/i.test(error.message)
+      ? 'Çok sık denendi. Lütfen birkaç dakika bekle. / Zu oft versucht – bitte ein paar Minuten warten.'
+      : 'Hata: '+error.message,'err');
+    $('send').disabled=false; return;
+  }
+  msg('📩 Bağlantı gönderildi. Gelen kutunu ve <b>spam</b> klasörünü kontrol et.<br><span style="opacity:.75">Mail ist unterwegs – auch im Spam nachsehen.</span>','ok');
+});
 </script>
 </body>
 </html>
